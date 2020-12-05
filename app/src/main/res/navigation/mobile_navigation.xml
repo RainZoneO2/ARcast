@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_browse">
+
+    <fragment
+        android:id="@+id/nav_browse"
+        android:name="com.rain.arcast.ui.browse.BrowseFragment"
+        android:label="@string/menu_browse"
+        tools:layout="@layout/fragment_browse" />
+
+    <fragment
+        android:id="@+id/nav_draw"
+        android:name="com.rain.arcast.ui.draw.DrawFragment"
+        android:label="@string/menu_draw"
+        tools:layout="@layout/fragment_draw" />
+
+    <fragment
+        android:id="@+id/nav_slideshow"
+        android:name="com.rain.arcast.ui.slideshow.SlideshowFragment"
+        android:label="@string/menu_slideshow"
+        tools:layout="@layout/fragment_slideshow" />
+</navigation>
