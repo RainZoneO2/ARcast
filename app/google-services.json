@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "850863470016",
+    "project_id": "arcast-80af0",
+    "storage_bucket": "arcast-80af0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:850863470016:android:79ae08df5e1cff28e74425",
+        "android_client_info": {
+          "package_name": "com.rain.arcast"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "850863470016-jgeul5isunoid3a7rpum717hsbo55sto.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCRoVbWTDz_bGpPd8R6bbY3lIHcr77N06U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "850863470016-jgeul5isunoid3a7rpum717hsbo55sto.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
