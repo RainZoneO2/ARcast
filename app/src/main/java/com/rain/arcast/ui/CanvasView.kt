@@ -8,15 +8,19 @@ import android.view.View
 import androidx.core.content.res.ResourcesCompat
 import com.rain.arcast.R
 
+
 private const val STROKE_WIDTH = 12f
 class CanvasView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
-    defStyleAttr: Int = 0): View(context) {
+    defStyleAttr: Int = 0
+) : View(context) {
 
     private lateinit var extraCanvas: Canvas
     private lateinit var extraBitmap: Bitmap
     private val drawColor = ResourcesCompat.getColor(resources, R.color.colorPaint, null)
+
+    //val iv = findViewById<ImageView>(R.id.imageView2)
 
     private val paint = Paint().apply {
         color = drawColor
@@ -95,10 +99,35 @@ class CanvasView @JvmOverloads constructor(
     }
 
     fun clear() {
+        //iv.setImageBitmap(extraBitmap)
         extraCanvas.drawColor(Color.WHITE)
-
-        //paint.color = Color.BLUE
     }
+
+//    fun saveToImg(context: Context) {
+//        //create directory if not exist
+//       val dir = File(context.getExternalFilesDir(null) + "/tempfolder");
+//        if (!dir.exists()) {
+//            dir.mkdirs()
+//        }
+//
+//        val output = File(dir, "tempfile.jpg");
+//        val os: OutputStream?
+//
+//        try {
+//            os = FileOutputStream(output)
+//            extraBitmap.compress(Bitmap.CompressFormat.JPEG, 100, os)
+//            os.flush()
+//            os.close()
+//
+//            //this code will scan the image so that it will appear in your gallery when you open next time
+//            MediaScannerConnection.scanFile(context, arrayOf(output.toString()), null,
+//                    OnScanCompletedListener { path, uri -> Log.d("appname", "image is saved in gallery and gallery is refreshed.") }
+//            )
+//        } catch (e: Exception) {
+//        }
+//
+//        dir.writeText("test")
+//    }
 }
 
 /*For changing color of brush use paint.color, for resetting drawing surface use extracanvas.drawColor()*/

@@ -1,6 +1,5 @@
 package com.rain.arcast.ui.draw
 
-import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,7 +8,6 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.rain.arcast.R
 import com.rain.arcast.ui.CanvasView
@@ -29,7 +27,7 @@ class DrawFragment : Fragment() {
                 ViewModelProvider(this).get(DrawViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_draw, container, false)
         val textView: TextView = root.findViewById(R.id.text_gallery)
-        drawViewModel.text.observe(viewLifecycleOwner, Observer {
+        drawViewModel.text.observe(viewLifecycleOwner, {
             textView.text = it
         })
 
@@ -45,7 +43,19 @@ class DrawFragment : Fragment() {
 
         btnSave.setOnClickListener {
             canvas.clear()
+
+            //canvas.saveToImg(requireContext())
         }
 
+    }
+
+    override fun onStart() {
+        super.onStart()
+
+        btnSave.setOnClickListener {
+            //canvas.clear()
+            //canvas.saveToImg(requireContext())
+
+        }
     }
 }
