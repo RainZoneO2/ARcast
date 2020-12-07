@@ -11,26 +11,26 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 
-class RegisterActivity : AppCompatActivity() {
+class LoginActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
 
     private lateinit var etEmail: EditText
     private lateinit var etPassword: EditText
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_register)
+        setContentView(R.layout.activity_login)
 
-
-        val registerBtn: Button = findViewById(R.id.btn_signup)
+        val loginBtn: Button = findViewById(R.id.btn_signin)
         val backBtn: Button = findViewById(R.id.btn_back)
         etEmail = findViewById(R.id.etEmail)
         etPassword = findViewById(R.id.etPassword)
 
         auth = FirebaseAuth.getInstance()
 
-        registerBtn.setOnClickListener {
-            registerUser()
+        loginBtn.setOnClickListener {
+            loginUser()
         }
 
         backBtn.setOnClickListener {
@@ -39,7 +39,7 @@ class RegisterActivity : AppCompatActivity() {
         }
     }
 
-    private fun registerUser() {
+    private fun loginUser() {
         val inputMethodManager =
             getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         inputMethodManager.hideSoftInputFromWindow(currentFocus!!.windowToken, 0)
@@ -50,7 +50,7 @@ class RegisterActivity : AppCompatActivity() {
                 Toast.LENGTH_SHORT
             ).show()
         else {
-            auth.createUserWithEmailAndPassword(
+            auth.signInWithEmailAndPassword(
                 etEmail.text.toString(),
                 etPassword.text.toString()
             )
@@ -58,7 +58,7 @@ class RegisterActivity : AppCompatActivity() {
                     if (task.isSuccessful) {
                         Toast.makeText(
                             applicationContext,
-                            "Sign up successful!",
+                            "Login successful!",
                             Toast.LENGTH_SHORT
                         ).show()
                         val user = auth.currentUser
@@ -75,16 +75,13 @@ class RegisterActivity : AppCompatActivity() {
         }
     }
 
-
     private fun updateUI(currentUser: FirebaseUser?) {
         //TODO: Fix backstack not clearing on finish()
         if (currentUser != null) {
-            intent = Intent(this@RegisterActivity, MainActivity::class.java)
+            intent = Intent(this@LoginActivity, MainActivity::class.java)
             finish()
             startActivity(intent)
         }
-
     }
-
 
 }

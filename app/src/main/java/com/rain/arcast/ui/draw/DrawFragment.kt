@@ -43,7 +43,6 @@ class DrawFragment : Fragment() {
 
         btnSave.setOnClickListener {
             canvas.clear()
-
             //canvas.saveToImg(requireContext())
         }
 
@@ -53,7 +52,7 @@ class DrawFragment : Fragment() {
         super.onStart()
 
         btnSave.setOnClickListener {
-            //canvas.clear()
+            canvas.clear()
             //canvas.saveToImg(requireContext())
 
         }
