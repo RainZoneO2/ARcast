@@ -2,11 +2,15 @@ package com.rain.arcast.ui
 
 import android.content.Context
 import android.graphics.*
+import android.os.Environment
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
 import androidx.core.content.res.ResourcesCompat
 import com.rain.arcast.R
+import java.io.ByteArrayOutputStream
+import java.io.File
+import java.io.FileOutputStream
 
 
 private const val STROKE_WIDTH = 12f
@@ -103,14 +107,33 @@ class CanvasView @JvmOverloads constructor(
         extraCanvas.drawColor(Color.WHITE)
     }
 
-//    fun saveToImg(context: Context) {
-//        //create directory if not exist
-//       val dir = File(context.getExternalFilesDir(null) + "/tempfolder");
+    fun saveToImg(context: Context) {
+        //create directory if not exist
+//        val dir = File( + "/tempfolder")
 //        if (!dir.exists()) {
 //            dir.mkdirs()
 //        }
-//
-//        val output = File(dir, "tempfile.jpg");
+
+        var file: File?
+        try {
+            file = File(
+                Environment.getExternalStorageDirectory().toString() + File.separator + "image.jpg"
+            )
+            file.createNewFile()
+
+            val bos = ByteArrayOutputStream()
+            extraBitmap.compress(Bitmap.CompressFormat.JPEG, 100, bos)
+            val bitmapData = bos.toByteArray()
+
+            val fos = FileOutputStream(file)
+            fos.write(bitmapData)
+            fos.flush()
+            fos.close()
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+
+//        val output = File(dir, "tempfile.jpg")
 //        val os: OutputStream?
 //
 //        try {
@@ -121,13 +144,18 @@ class CanvasView @JvmOverloads constructor(
 //
 //            //this code will scan the image so that it will appear in your gallery when you open next time
 //            MediaScannerConnection.scanFile(context, arrayOf(output.toString()), null,
-//                    OnScanCompletedListener { path, uri -> Log.d("appname", "image is saved in gallery and gallery is refreshed.") }
+//                MediaScannerConnection.OnScanCompletedListener { path, uri ->
+//                    Log.d(
+//                        "appname",
+//                        "image is saved in gallery and gallery is refreshed."
+//                    )
+//                }
 //            )
 //        } catch (e: Exception) {
 //        }
 //
 //        dir.writeText("test")
-//    }
+    }
 }
 
 /*For changing color of brush use paint.color, for resetting drawing surface use extracanvas.drawColor()*/

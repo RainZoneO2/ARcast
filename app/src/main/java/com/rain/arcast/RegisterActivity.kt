@@ -56,6 +56,7 @@ class RegisterActivity : AppCompatActivity() {
             )
                 .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
+                        //TODO: Auth user using https://stackoverflow.com/a/37580118/10572118
                         Toast.makeText(
                             applicationContext,
                             "Sign up successful!",
