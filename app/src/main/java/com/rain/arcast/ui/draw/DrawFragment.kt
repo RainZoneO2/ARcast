@@ -52,8 +52,8 @@ class DrawFragment : Fragment() {
         btnSave.setOnClickListener {
             setupPerm()
             //canvas.clear()
-
-
+            Log.i("BUTTON", "Save button clicked")
+            canvas.saveToImg(requireContext())
         }
     }
 
@@ -86,7 +86,7 @@ class DrawFragment : Fragment() {
                 val dialog = builder.create()
                 dialog.show()
             } else {
-                makeRequest() //????????????? why didnt this get executed lol
+                makeRequest()
             }
         }
     }
@@ -109,7 +109,6 @@ class DrawFragment : Fragment() {
                 if (grantResults.isEmpty() || grantResults[0] != PackageManager.PERMISSION_GRANTED) {
                     Log.i(TAG, "Permission has been denied by user.")
                 } else {
-                    canvas.saveToImg(requireContext())
                     Log.i(TAG, "Permission has been granted by user.")
                 }
             }

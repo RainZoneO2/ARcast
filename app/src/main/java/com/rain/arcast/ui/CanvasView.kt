@@ -2,15 +2,16 @@ package com.rain.arcast.ui
 
 import android.content.Context
 import android.graphics.*
-import android.os.Environment
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
+import android.widget.Toast
 import androidx.core.content.res.ResourcesCompat
 import com.rain.arcast.R
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileOutputStream
+import java.util.UUID.randomUUID
 
 
 private const val STROKE_WIDTH = 12f
@@ -108,16 +109,15 @@ class CanvasView @JvmOverloads constructor(
     }
 
     fun saveToImg(context: Context) {
-        //create directory if not exist
-//        val dir = File( + "/tempfolder")
-//        if (!dir.exists()) {
-//            dir.mkdirs()
-//        }
 
         var file: File?
+
+
+
         try {
             file = File(
-                Environment.getExternalStorageDirectory().toString() + File.separator + "image.jpg"
+                context.getExternalFilesDir(null)
+                    .toString() + File.separator + "image-" + randomUUID() + ".jpg"
             )
             file.createNewFile()
 
@@ -129,6 +129,7 @@ class CanvasView @JvmOverloads constructor(
             fos.write(bitmapData)
             fos.flush()
             fos.close()
+            Toast.makeText(context, "SUCCESSFUL!", Toast.LENGTH_SHORT).show()
         } catch (e: Exception) {
             e.printStackTrace()
         }
