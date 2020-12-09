@@ -19,4 +19,6 @@
     <string name="back">Back</string>
     <string name="sign_up">Sign up!</string>
     <string name="sign_out">Sign Out</string>
+    <string name="image_of_drawing">Image of Drawing</string>
+    <string name="save_amp_upload"><![CDATA[Save & Upload]]></string>
 </resources>

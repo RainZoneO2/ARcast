@@ -3,10 +3,13 @@ package com.rain.arcast.ui
 import android.content.Context
 import android.graphics.*
 import android.util.AttributeSet
+import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import android.widget.Toast
 import androidx.core.content.res.ResourcesCompat
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 import com.rain.arcast.R
 import java.io.ByteArrayOutputStream
 import java.io.File
@@ -24,8 +27,6 @@ class CanvasView @JvmOverloads constructor(
     private lateinit var extraCanvas: Canvas
     private lateinit var extraBitmap: Bitmap
     private val drawColor = ResourcesCompat.getColor(resources, R.color.colorPaint, null)
-
-    //val iv = findViewById<ImageView>(R.id.imageView2)
 
     private val paint = Paint().apply {
         color = drawColor
@@ -104,26 +105,26 @@ class CanvasView @JvmOverloads constructor(
     }
 
     fun clear() {
-        //iv.setImageBitmap(extraBitmap)
         extraCanvas.drawColor(Color.WHITE)
     }
 
     fun saveToImg(context: Context) {
 
-        var file: File?
-
-
+        val file: File?
 
         try {
             file = File(
-                context.getExternalFilesDir(null)
-                    .toString() + File.separator + "image-" + randomUUID() + ".jpg"
+                    context.getExternalFilesDir(null)
+                            .toString() + File.separator + "image-" + randomUUID() + ".png"
             )
             file.createNewFile()
 
             val bos = ByteArrayOutputStream()
-            extraBitmap.compress(Bitmap.CompressFormat.JPEG, 100, bos)
+            extraBitmap.compress(Bitmap.CompressFormat.PNG, 100, bos)
             val bitmapData = bos.toByteArray()
+
+            //Upload happens here
+            upload(context, bitmapData, file)
 
             val fos = FileOutputStream(file)
             fos.write(bitmapData)
@@ -133,29 +134,22 @@ class CanvasView @JvmOverloads constructor(
         } catch (e: Exception) {
             e.printStackTrace()
         }
+    }
 
-//        val output = File(dir, "tempfile.jpg")
-//        val os: OutputStream?
-//
-//        try {
-//            os = FileOutputStream(output)
-//            extraBitmap.compress(Bitmap.CompressFormat.JPEG, 100, os)
-//            os.flush()
-//            os.close()
-//
-//            //this code will scan the image so that it will appear in your gallery when you open next time
-//            MediaScannerConnection.scanFile(context, arrayOf(output.toString()), null,
-//                MediaScannerConnection.OnScanCompletedListener { path, uri ->
-//                    Log.d(
-//                        "appname",
-//                        "image is saved in gallery and gallery is refreshed."
-//                    )
-//                }
-//            )
-//        } catch (e: Exception) {
-//        }
-//
-//        dir.writeText("test")
+    fun upload(context: Context, byteData: ByteArray, file: File) {
+        val imageRef: StorageReference = FirebaseStorage.getInstance().reference.child("images" + File.separator + file.name)
+        //TODO: Update metadata with Firebase.getInstance().getUID()
+        imageRef.putBytes(byteData)
+                .addOnSuccessListener { task ->
+                    Toast.makeText(context, "Uploaded!", Toast.LENGTH_SHORT).show()
+                }
+                .addOnFailureListener { task ->
+                    Toast.makeText(context, "Failed! Error: " + task.message, Toast.LENGTH_SHORT).show()
+                }
+                .addOnProgressListener { task ->
+                    val progress = (100.0 * task.bytesTransferred) / task.totalByteCount
+                    Log.i("UPLOAD", progress.toString())
+                }
     }
 }
 
