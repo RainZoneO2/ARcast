@@ -61,7 +61,8 @@ class DrawFragment : Fragment() {
         if (permission != PackageManager.PERMISSION_GRANTED) {
             Log.i(TAG, "Permission to store denied")
             /*
-            * ActivityCompat.shouldShowRequestPermissionRationale(context, permission) should return true if the user has previously denied request, and false if not*/
+            * ActivityCompat.shouldShowRequestPermissionRationale(context, permission) should
+            * return true if the user has previously denied request, and false if not*/
             if (ActivityCompat.shouldShowRequestPermissionRationale(
                     requireActivity(),
                     android.Manifest.permission.WRITE_EXTERNAL_STORAGE
@@ -108,9 +109,6 @@ class DrawFragment : Fragment() {
                 }
             }
         }
-
-
-        //super.onRequestPermissionsResult(requestCode, permissions, grantResults)
     }
 
 

@@ -9,14 +9,14 @@
         android:id="@+id/etEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:drawableLeft="@drawable/icons8_circled_user_32"
         android:background="@drawable/rounded_edittext_states"
+        android:drawableLeft="@drawable/icons8_circled_user_32"
         android:ems="10"
         android:hint="@string/email"
-        android:includeFontPadding="true"
-        android:paddingLeft="5dp"
         android:importantForAutofill="no"
+        android:includeFontPadding="true"
         android:inputType="textEmailAddress"
+        android:paddingLeft="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -78,6 +78,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/arcast_logo"
-        android:contentDescription="ARcast logo" />
+        android:contentDescription="@string/arcast_logo" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

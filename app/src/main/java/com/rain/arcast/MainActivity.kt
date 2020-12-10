@@ -30,8 +30,11 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment)
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
-        appBarConfiguration = AppBarConfiguration(setOf(
-                R.id.nav_browse, R.id.nav_draw, R.id.nav_about), drawerLayout)
+        appBarConfiguration = AppBarConfiguration(
+            setOf(
+                R.id.nav_browse, R.id.nav_draw, R.id.nav_camera, R.id.nav_about
+            ), drawerLayout
+        )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
@@ -53,10 +56,8 @@ class MainActivity : AppCompatActivity() {
             R.id.action_signout -> {
 
                 FirebaseAuth.getInstance().signOut()
-
                 startActivity(Intent(this@MainActivity, SplashScreen::class.java))
                 finish()
-
                 return true
             }
 

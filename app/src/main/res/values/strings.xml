@@ -23,4 +23,6 @@
     <string name="save_amp_upload"><![CDATA[Save & Upload]]></string>
     <string name="about">About</string>
     <string name="rainy_inc_no_rights_reserved">Rainy Inc. No rights reserved</string>
+    <string name="camera">Camera</string>
+    <string name="arcast_logo">ARcast logo</string>
 </resources>

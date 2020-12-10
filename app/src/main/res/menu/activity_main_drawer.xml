@@ -13,6 +13,10 @@
             android:icon="@drawable/icons8_paint_palette_64"
             android:title="@string/menu_draw" />
         <item
+            android:id="@+id/nav_camera"
+            android:icon="@drawable/icons8_camera_64"
+            android:title="@string/camera" />
+        <item
             android:id="@+id/nav_about"
             android:icon="@drawable/icons8_info_64"
             android:title="@string/about" />

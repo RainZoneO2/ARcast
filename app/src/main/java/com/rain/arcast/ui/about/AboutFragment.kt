@@ -1,4 +1,4 @@
-package com.rain.arcast.ui.About
+package com.rain.arcast.ui.about
 
 import android.os.Bundle
 import android.view.LayoutInflater

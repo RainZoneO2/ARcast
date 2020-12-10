@@ -1,4 +1,4 @@
-package com.rain.arcast.ui.About
+package com.rain.arcast.ui.about
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

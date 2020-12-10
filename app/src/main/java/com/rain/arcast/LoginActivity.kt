@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Switch
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
@@ -16,7 +17,7 @@ class LoginActivity : AppCompatActivity() {
 
     private lateinit var etEmail: EditText
     private lateinit var etPassword: EditText
-
+    private lateinit var swRememberMe: Switch
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,12 +38,13 @@ class LoginActivity : AppCompatActivity() {
             startActivity(Intent(this, SplashScreen::class.java))
             //finish()
         }
+
     }
 
     private fun loginUser() {
         val inputMethodManager =
             getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        inputMethodManager.hideSoftInputFromWindow(currentFocus!!.windowToken, 0)
+        inputMethodManager.hideSoftInputFromWindow(currentFocus?.windowToken, 0)
         if (etEmail.text.toString().isEmpty() || etPassword.text.toString().isEmpty())
             Toast.makeText(
                 applicationContext,

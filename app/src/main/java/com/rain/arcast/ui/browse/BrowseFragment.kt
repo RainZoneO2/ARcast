@@ -29,10 +29,6 @@ class BrowseFragment : Fragment() {
         browseViewModel =
                 ViewModelProvider(this).get(BrowseViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_browse, container, false)
-//        val textView: TextView = root.findViewById(R.id.text_home)
-//        browseViewModel.text.observe(viewLifecycleOwner, {
-//            textView.text = it
-//        })
 
         adapter = RecyclerAdapter(requireContext())
         recyclerList = root.findViewById(R.id.recyclerList)

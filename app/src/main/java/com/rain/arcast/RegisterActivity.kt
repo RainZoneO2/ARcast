@@ -35,14 +35,13 @@ class RegisterActivity : AppCompatActivity() {
 
         backBtn.setOnClickListener {
             startActivity(Intent(this, SplashScreen::class.java))
-            //finish()
         }
     }
 
     private fun registerUser() {
         val inputMethodManager =
             getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        inputMethodManager.hideSoftInputFromWindow(currentFocus!!.windowToken, 0)
+        inputMethodManager.hideSoftInputFromWindow(currentFocus?.windowToken, 0)
         if (etEmail.text.toString().isEmpty() || etPassword.text.toString().isEmpty())
             Toast.makeText(
                 applicationContext,
@@ -56,7 +55,6 @@ class RegisterActivity : AppCompatActivity() {
             )
                 .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
-                        //TODO: Auth user using https://stackoverflow.com/a/37580118/10572118
                         Toast.makeText(
                             applicationContext,
                             "Sign up successful!",

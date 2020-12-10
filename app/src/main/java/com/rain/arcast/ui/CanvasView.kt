@@ -124,7 +124,7 @@ class CanvasView @JvmOverloads constructor(
             val bitmapData = bos.toByteArray()
 
             //Upload happens here
-            upload(context, bitmapData, file)
+            upload(context, bitmapData, file.name)
 
             val fos = FileOutputStream(file)
             fos.write(bitmapData)
@@ -136,20 +136,21 @@ class CanvasView @JvmOverloads constructor(
         }
     }
 
-    fun upload(context: Context, byteData: ByteArray, file: File) {
-        val imageRef: StorageReference = FirebaseStorage.getInstance().reference.child("images" + File.separator + file.name)
+    fun upload(context: Context, byteData: ByteArray, fileName: String) {
+        val imageRef: StorageReference =
+            FirebaseStorage.getInstance().reference.child("images" + File.separator + fileName)
         //TODO: Update metadata with Firebase.getInstance().getUID()
         imageRef.putBytes(byteData)
-                .addOnSuccessListener { task ->
-                    Toast.makeText(context, "Uploaded!", Toast.LENGTH_SHORT).show()
-                }
-                .addOnFailureListener { task ->
-                    Toast.makeText(context, "Failed! Error: " + task.message, Toast.LENGTH_SHORT).show()
-                }
-                .addOnProgressListener { task ->
-                    val progress = (100.0 * task.bytesTransferred) / task.totalByteCount
-                    Log.i("UPLOAD", progress.toString())
-                }
+            .addOnSuccessListener { task ->
+                Toast.makeText(context, "Uploaded!", Toast.LENGTH_SHORT).show()
+            }
+            .addOnFailureListener { task ->
+                Toast.makeText(context, "Failed! Error: " + task.message, Toast.LENGTH_SHORT).show()
+            }
+            .addOnProgressListener { task ->
+                val progress = (100.0 * task.bytesTransferred) / task.totalByteCount
+                Log.i("UPLOAD", progress.toString())
+            }
     }
 }
 
