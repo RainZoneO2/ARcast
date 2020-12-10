@@ -8,7 +8,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -34,10 +33,6 @@ class DrawFragment : Fragment() {
         drawViewModel =
             ViewModelProvider(this).get(DrawViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_draw, container, false)
-        val textView: TextView = root.findViewById(R.id.text_gallery)
-        drawViewModel.text.observe(viewLifecycleOwner, {
-            textView.text = it
-        })
 
         canvas = CanvasView(requireContext())
         btnSave = root.findViewById(R.id.btn_save)
